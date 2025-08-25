@@ -53,24 +53,27 @@ const Timer = () => {
         }
     }
 
+    const baseButtonClass = "px-2 py-1 rounded-md cursor-pointer"
+    const baseButtonColoredClass = `${baseButtonClass} bg-accent hover:bg-accent-hover text-main-text`
+
     return (
         <div>
             <div>
                 <button
-                    className={"border-green-700 bg-green-300 px-2 py-1 rounded-md text-white cursor-pointer hover:bg-green-600"}
+                    className={`${baseButtonClass} bg-focus text-main-text`}
                     onClick={() => changeSession('FOCUS')}
                 >
                     FOCUS (25 min)
                 </button>
                 <button
-                    className={"border-green-700 bg-green-300 px-2 py-1 rounded-md text-white cursor-pointer hover:bg-green-600"}
+                    className={`${baseButtonClass} bg-break text-main-text`}
                     onClick={() => changeSession('BREAK')}
                 >
                     Short BREAK (5min)
                 </button>
             </div>
             <div id="timer" className={"mb-5 text-center"}>
-                <p className={"text-8xl font-mono tracking-wide bg-slate-900 text-green-400 py-5"}>
+                <p className={"text-8xl font-mono tracking-wide bg-back-dark text-main-text py-5"}>
                     <span>
                         {toMinute(times)}
                     </span>
@@ -85,13 +88,13 @@ const Timer = () => {
             <div id="timer-button">
                 <button
                     onClick={() => setIsActive(true)}
-                    className={"border-green-700 bg-green-300 px-2 py-1 rounded-md text-white cursor-pointer hover:bg-green-600"}
+                    className={`${baseButtonColoredClass}`}
                 >
                     시작
                 </button>
                 <button
                     onClick={() => setIsActive(false)}
-                    className={"border-green-700 bg-green-300 px-2 py-1 rounded-md text-white cursor-pointer hover:bg-green-600"}
+                    className={`${baseButtonColoredClass}`}
                 >
                     일시정지
                 </button>
