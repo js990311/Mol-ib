@@ -69,12 +69,14 @@ const Timer = () => {
                     Short BREAK (5min)
                 </button>
             </div>
-            <div id="timer">
-                <p>
+            <div id="timer" className={"mb-5 text-center"}>
+                <p className={"text-8xl font-mono tracking-wide bg-slate-900 text-green-400 py-5"}>
                     <span>
                         {toMinute(times)}
                     </span>
-                    <span>:</span>
+                    <span className={"mx-2 animate-pulse"}>
+                        :
+                    </span>
                     <span>
                         {toSecond(times)}
                     </span>
