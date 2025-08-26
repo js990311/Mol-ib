@@ -13,19 +13,26 @@ const toPad : toTimeFunction = (time: number) => time.toString().padStart(2, "0"
 const toMinute : toTimeFunction = (time) => toPad(Math.floor(time / 60));
 const toSecond : toTimeFunction = (time) => toPad(time % 60);
 
-const Timer = () => {
+type TimerProps = {
+    onFocusEnd ?: () => void;
+}
+
+const Timer = ({onFocusEnd} : TimerProps) => {
     const [times, setTimes] = useState<number>(25*60);
     const [isActive, setIsActive] = useState<boolean>(false);
+    const [isProgress, setIsProgress] = useState<boolean>(false);
     const timerInterval = useRef();
     const [session, setSession] = useState<'FOCUS' | 'BREAK'>('FOCUS');
 
 
     useEffect(()=>{
         if(isActive){
+            setIsProgress(true);
             timerInterval.current = setInterval(() => {
                 setTimes((prev)=>{
                     if(prev <= 1){
                         setIsActive(false);
+                        onFinish();
                         return 0;
                     }
                     return prev-1;
@@ -48,8 +55,25 @@ const Timer = () => {
     }, [session]);
 
     const changeSession = (session : 'FOCUS' | 'BREAK') => {
-        if(!isActive){
+        if(!isActive && !isProgress){
             setSession(session);
+        }
+    }
+
+    const onReset = () => {
+        setIsProgress(false);
+        setTimes(TIME_MAP[session]);
+    }
+
+    const onFinish = () => {
+        setIsProgress(false);
+        if(onFocusEnd){
+            onFocusEnd();
+        }
+        if(session === 'FOCUS'){
+            setSession('BREAK');
+        }else {
+            setSession('FOCUS');
         }
     }
 
@@ -102,6 +126,7 @@ const Timer = () => {
                         <div className={"w-full h-full"}>
                             <button
                                 className={`${baseButtonColoredClass} rounded-bl-lg w-1/3 h-full`}
+                                onClick={() => onReset()}
                             >
                                 초기화
                             </button>
@@ -113,6 +138,7 @@ const Timer = () => {
                             </button>
                             <button
                                 className={`${baseButtonColoredClass} rounded-br-lg w-1/3 h-full`}
+                                onClick={() => onFinish()}
                             >
                                 완료
                             </button>
