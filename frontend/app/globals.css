@@ -18,6 +18,7 @@
   /* 상태 색깔 */
   --color-focus: #E05D5D;
   --color-break: #5DA9E9;
+  --color-session-inactive: #374151;
 
   /* 버튼 */
   --color-accent: #22c55e;

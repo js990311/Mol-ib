@@ -57,16 +57,16 @@ const Timer = () => {
     const baseButtonColoredClass = `${baseButtonClass} bg-accent hover:bg-accent-hover text-main-text`
 
     return (
-        <div>
+        <div className={"rounded-lg shadow-lg text-center max-w-sm mx-auto"}>
             <div>
                 <button
-                    className={`${baseButtonClass} bg-focus text-main-text`}
+                    className={`rounded-tl-lg w-1/2 py-1 ${session === 'FOCUS' ? 'bg-focus' : 'bg-session-inactive'} text-main-text cursor-pointer`}
                     onClick={() => changeSession('FOCUS')}
                 >
                     FOCUS (25 min)
                 </button>
                 <button
-                    className={`${baseButtonClass} bg-break text-main-text`}
+                    className={`rounded-tr-lg w-1/2 py-1 ${session === 'BREAK' ? 'bg-break' : 'bg-session-inactive'} text-main-text cursor-pointer`}
                     onClick={() => changeSession('BREAK')}
                 >
                     Short BREAK (5min)
