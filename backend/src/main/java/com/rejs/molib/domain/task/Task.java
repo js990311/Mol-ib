@@ -1,0 +1,44 @@
+package com.rejs.molib.domain.task;
+
+import com.rejs.molib.domain.timer.Timer;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+@Table(name = "tasks")
+public class Task {
+    @Id
+    @GeneratedValue
+    @Column(name = "task_id")
+    private Long id;
+
+    @Column
+    private String name;
+
+    /* 관계 - Timer */
+    @OneToMany(mappedBy = "task")
+    private List<Timer> timers = new ArrayList<>();
+
+    /**
+     * 반드시 Timer의 mapTask를 통해서만 사용할 것
+     * @param timer
+     */
+    public void addTimer(Timer timer){
+        this.timers.add(timer);
+    }
+
+    /* 생성 */
+
+    public Task(String name) {
+        this.name = name;
+    }
+}
