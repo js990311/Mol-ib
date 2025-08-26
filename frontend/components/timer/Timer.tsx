@@ -53,7 +53,7 @@ const Timer = () => {
         }
     }
 
-    const baseButtonClass = "px-2 py-1 rounded-md cursor-pointer"
+    const baseButtonClass = "px-2 py-2 cursor-pointer"
     const baseButtonColoredClass = `${baseButtonClass} bg-accent hover:bg-accent-hover text-main-text`
 
     return (
@@ -72,7 +72,7 @@ const Timer = () => {
                     Short BREAK (5min)
                 </button>
             </div>
-            <div id="timer" className={"mb-5 text-center"}>
+            <div id="timer" className={"text-center"}>
                 <p className={"text-8xl font-mono tracking-wide bg-back-dark text-main-text py-5"}>
                     <span>
                         {toMinute(times)}
@@ -86,18 +86,38 @@ const Timer = () => {
                 </p>
             </div>
             <div id="timer-button">
-                <button
-                    onClick={() => setIsActive(true)}
-                    className={`${baseButtonColoredClass}`}
-                >
-                    시작
-                </button>
-                <button
-                    onClick={() => setIsActive(false)}
-                    className={`${baseButtonColoredClass}`}
-                >
-                    일시정지
-                </button>
+                {
+                    isActive
+                        ?
+                        <div className={"w-full"}>
+                            <button
+                                onClick={() => setIsActive(false)}
+                                className={`${baseButtonColoredClass} rounded-b-lg w-full`}
+                            >
+                                일시정지
+                            </button>
+
+                        </div>
+                        :
+                        <div className={"w-full h-full"}>
+                            <button
+                                className={`${baseButtonColoredClass} rounded-bl-lg w-1/3 h-full`}
+                            >
+                                초기화
+                            </button>
+                            <button
+                                onClick={() => setIsActive(true)}
+                                className={`${baseButtonColoredClass} w-1/3 h-full`}
+                            >
+                                시작
+                            </button>
+                            <button
+                                className={`${baseButtonColoredClass} rounded-br-lg w-1/3 h-full`}
+                            >
+                                완료
+                            </button>
+                        </div>
+                }
             </div>
         </div>
     )
