@@ -21,6 +21,9 @@ public class Timer {
     private Long id;
 
     @Column
+    private Integer time;
+
+    @Column
     private String note;
 
     /* 관계 task */
@@ -38,8 +41,9 @@ public class Timer {
 
     /* 생성 */
 
-    public Timer(String note, Task task) {
+    public Timer(String note, Integer time, Task task) {
         this.note = note;
+        this.time = time;
         mapTask(task);
     }
 }

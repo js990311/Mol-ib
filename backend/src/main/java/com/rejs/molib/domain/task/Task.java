@@ -24,6 +24,9 @@ public class Task {
     @Column
     private String name;
 
+    @Column
+    private boolean isComplete;
+
     /* 관계 - Timer */
     @OneToMany(mappedBy = "task")
     private List<Timer> timers = new ArrayList<>();
@@ -40,5 +43,10 @@ public class Task {
 
     public Task(String name) {
         this.name = name;
+    }
+
+    /* 로직 */
+    public void updateComplete(boolean isComplete){
+        this.isComplete = isComplete;
     }
 }
