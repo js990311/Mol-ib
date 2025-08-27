@@ -2,9 +2,11 @@ package com.rejs.molib.domain.task.dto;
 
 import com.rejs.molib.domain.task.Task;
 import com.rejs.molib.domain.timer.dto.TimerDto;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class TaskDto {
     private Long id;
     private String name;

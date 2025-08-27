@@ -2,14 +2,12 @@ package com.rejs.molib.domain.task;
 
 import com.rejs.molib.domain.timer.Timer;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
@@ -28,6 +26,7 @@ public class Task {
     private boolean isComplete;
 
     /* 관계 - Timer */
+    @Builder.Default
     @OneToMany(mappedBy = "task")
     private List<Timer> timers = new ArrayList<>();
 

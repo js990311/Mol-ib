@@ -36,7 +36,7 @@ public class TaskService {
     @Transactional
     public void updateTaskIsComplete(Long id, boolean isCompelete){
         Task task = taskRepository.findById(id).orElseThrow();
-        task.isComplete();
+        task.updateComplete(isCompelete);
     }
 
     /* DELETE */
