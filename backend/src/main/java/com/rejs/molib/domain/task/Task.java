@@ -27,7 +27,7 @@ public class Task {
 
     /* 관계 - Timer */
     @Builder.Default
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<Timer> timers = new ArrayList<>();
 
     /**
