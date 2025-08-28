@@ -70,7 +70,7 @@ class TaskControllerTest {
         boolean isComplete = true;
         String name = "name";
         Integer time = 100;
-        List<TimerDto> timers = Collections.singletonList(new TimerDto(id, time, name));
+        List<TimerDto> timers = Collections.singletonList(new TimerDto(id, time, name, id));
 
         TaskDto tasks = new TaskDto(id, name, isComplete, timers);
         when(taskService.readTaskById(id)).thenReturn(tasks);
