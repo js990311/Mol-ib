@@ -14,6 +14,7 @@ public class TaskSummaryDto {
     public TaskSummaryDto(Long id, String name, boolean isComplete, Long focusedTime) {
         this.id = id;
         this.name = name;
+        this.isComplete = isComplete;
         this.focusedTime = focusedTime;
     }
 }
